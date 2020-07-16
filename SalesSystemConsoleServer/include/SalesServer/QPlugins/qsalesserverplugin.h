@@ -80,8 +80,6 @@ private:
     QByteArray templateRemove(T *command, QByteArray &data);
     template<typename TCommand, typename TValue>
     QByteArray templateGet(TCommand *command, TValue &value, QByteArray &data);
-
-    void testStatisticsGetter();
 };
 
 }

@@ -22,7 +22,6 @@ void Plugins::QSalesServerPlugin::initPluginInformation()
 void Plugins::QSalesServerPlugin::dataBaseIsInit()
 {
     databaseControl = new QDatabaseConrol(&dataBase, this);
-    testStatisticsGetter();
 }
 
 void Plugins::QSalesServerPlugin::processCommand(quint8 command,
@@ -152,62 +151,6 @@ QByteArray Plugins::QSalesServerPlugin::getCorrectPointSaleOutput(QByteArray &da
 
     Output = currentPointSale.toByteArray();
     return Output;
-}
-
-void Plugins::QSalesServerPlugin::testStatisticsGetter()
-{
-    StatisticsInput info;
-    info.step = StatisticsStep::Day;
-    info.type = StatisticsType::Money;
-    info.stepValue = 27;
-    info.startDate.setDate(QDate(2019, 06, 01));
-    info.endDate.setDate(QDate(2019, 07, 3));
-
-    auto *gt = new Plugins::QStatisticsGetter(databaseControl, info);
-    qDebug() << gt->getMaxValue();
-    for (auto val : gt->get()) {
-        qDebug() << val.toString();
-    }
-
-    info.step = StatisticsStep::Day;
-    info.type = StatisticsType::MoneyUsers;
-    info.stepValue = 30;
-    info.startDate.setDate(QDate(2019, 06, 01));
-    info.endDate.setDate(QDate(2019, 07, 3));
-
-    qDebug() << "USERS MONEY :";
-    auto *gt2 = new Plugins::QStatisticsGetter(databaseControl, info);
-    qDebug() << gt2->getMaxValue();
-    for (auto val : gt2->get()) {
-        qDebug() << val.toString();
-    }
-
-    info.step = StatisticsStep::Day;
-    info.type = StatisticsType::NumberSoldProduct;
-    info.stepValue = 1;
-    info.id = 4;
-    info.startDate.setDate(QDate(2019, 06, 01));
-    info.endDate.setDate(QDate(2019, 06, 1));
-
-    qDebug() << "COUNT PRODUCTS";
-    auto *gt3 = new Plugins::QStatisticsGetter(databaseControl, info);
-    qDebug() << gt3->getMaxValue();
-    for (auto val : gt3->get()) {
-        qDebug() << val.toString();
-    }
-
-    info.step = StatisticsStep::Day;
-    info.type = StatisticsType::NumberSoldProductsForPointSale;
-    info.stepValue = 1;
-    info.id = 2;
-    info.startDate.setDate(QDate(2019, 06, 01));
-    info.endDate.setDate(QDate(2019, 06, 1));
-
-    gt3 = new Plugins::QStatisticsGetter(databaseControl, info);
-    qDebug() << gt3->getMaxValue();
-    for (auto val : gt3->get()) {
-        qDebug() << val.toString();
-    }
 }
 
 void Plugins::QSalesServerPlugin::command0x02_sendCategories(QByteArray &data,
