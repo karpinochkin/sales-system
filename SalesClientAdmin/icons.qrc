@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/icons/mainTabs/Database.png</file>
+        <file>images/icons/mainTabs/Settings.png</file>
+        <file>images/icons/mainTabs/info.png</file>
+        <file>images/icons/mainTabs/Statistic.png</file>
+        <file>images/icons/other/Search.png</file>
+        <file>images/icons/other/emptyImage.png</file>
+        <file>images/icons/other/iconA.png</file>
+    </qresource>
+</RCC>
